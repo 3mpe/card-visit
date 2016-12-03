@@ -1,0 +1,23 @@
+{
+  "name": "card",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": " <vatanseveremre90@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "bower": "^1.8.0",
+    "express": "^4.14.0",
+    "mongoose": "^4.6.3",
+    "mongoose-validator": "^1.2.5"
+  },
+  "devDependencies": {
+    "traceur": "0.0.111"
+  }
+}
+
