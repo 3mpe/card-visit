@@ -62,11 +62,6 @@ angular
 	});
 
 
-angular.module('GaarajCardVisit').controller('LayoutController', function () {
-
-});
-
-
 angular
   .module('GaarajCardVisit')
   .factory('Api', function Api($q, $http, $rootScope, $window, $location, Config) {
@@ -224,6 +219,11 @@ angular.module('GaarajCardVisit').service('Utils', function () {
 			$Notification.error(message, title);
 		}
 	};
+});
+
+
+angular.module('GaarajCardVisit').controller('LayoutController', function () {
+
 });
 
 

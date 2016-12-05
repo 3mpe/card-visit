@@ -38,7 +38,7 @@ var paths = {
 };
 
 
-gulp.task('styles-app:dev', function (done) {
+gulp.task('styles-app:dev', function (done) { 
 	return gulp.src('app/styles/app.scss')
 		.pipe(sass({ includePaths: ['./styles'] }))
 		.pipe(banner(comment, { pkg: pkg }))
