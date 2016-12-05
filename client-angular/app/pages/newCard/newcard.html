@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <form ng-submit="vm.savecard(vm.cardForm)">
+      <div class="span12">
+        <label>Adı</label>
+        <div class="input-prepend">
+          <span class="add-on">
+					<i class="icon-envelope"></i>
+				</span>
+          <input type="text" ng-model="vm.cardForm.name">
+        </div>
+        <label>Soyadı</label>
+        <div class="input-prepend">
+          <span class="add-on">
+					<i class="icon-user"></i>
+				</span>
+          <input type="text" ng-model="vm.cardForm.surname">
+        </div>
+        <label> Telefon Numarası</label>
+        <div class="input-prepend">
+          <span class="add-on">
+					<i class="icon-globe"></i>
+				</span>
+          <input type="text" ng-model="vm.cardForm.phone" maxlength="10">
+        </div>
+        <label> Eposta Adresi</label>
+        <div class="input-prepend">
+          <span class="add-on">
+					<i class="icon-globe"></i>
+				</span>
+          <input type="text" ng-model="vm.cardForm.email">
+        </div>
+        <label> Firma </label>
+        <div class="input-prepend">
+          <span class="add-on">
+					<i class="icon-globe"></i>
+				</span>
+          <input type="text" ng-model="vm.cardForm.company">
+        </div>
+        <label> Firmada Pozisyonu</label>
+        <div class="input-prepend">
+          <span class="add-on">
+					<i class="icon-globe"></i>
+				</span>
+          <input type="text" ng-model="vm.cardForm.company_position">
+        </div>
+        <button>Kaydet</button>
+      </div>
+    </form>
+  </div>
+</div>

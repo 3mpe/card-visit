@@ -1,0 +1,80 @@
+/*
+ * client-angular 1.0.0
+ * 
+ * 
+ * --Developers--
+ * Emre Vatansever <vatanseveremre90@gmail.com>
+ * Copyright 2016 | Released under the ISC license.
+*/
+/*@import '../bower_components/bootstrap/less/mixins/vendor-prefixes.less';*/
+body {
+  font-family: 'Titillium Web', serif; }
+
+.page-heading {
+  background-color: #F9A139;
+  color: #fff;
+  padding: 32px 0px; }
+
+.page-title {
+  text-align: center;
+  margin: 0px; }
+
+.card-list {
+  padding: 15px 15px; }
+  .card-list .item {
+    position: relative;
+    border: 2px solid #e0e0e0;
+    margin: 0 0 30px;
+    padding: 12px;
+    border-radius: 3px; }
+    .card-list .item-image {
+      float: left;
+      width: 50px;
+      height: 50px;
+      padding: 10px 10px;
+      border: 1px solid #bdbdbd;
+      border-radius: 100%;
+      margin-top: 29px;
+      margin-left: 20px; }
+    .card-list .item-explanation {
+      padding-left: 106px; }
+      .card-list .item-explanation-name {
+        margin: 0 0 6px;
+        font-size: 20px;
+        font-weight: 800; }
+      .card-list .item-explanation-email {
+        padding-left: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+    .card-list .item-select {
+      border-color: #4ab3e2;
+      background-color: #FDFDFD; }
+    .card-list .item .processor {
+      position: absolute;
+      right: 20px;
+      top: 20px; }
+      .card-list .item .processor div {
+        padding: 5px; }
+  .card-list .item:hover {
+    border-color: #4ab3e2;
+    background-color: #FDFDFD; }
+
+.search {
+  position: relative;
+  text-align: center; }
+  .search i {
+    position: absolute;
+    top: 3px;
+    left: 20px; }
+  .search i::before {
+    font-size: 24px; }
+  .search input {
+    padding: 8px;
+    padding-left: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    border-radius: 2px;
+    border: 1px solid #4ab3e2;
+    width: 95%; }

@@ -9,7 +9,7 @@ const http = require('http');
 
 const server = http.createServer(app);
 
-const port = 3000;
+const port = 8080;
 
 server.listen(port, function () {
 	console.log(`localhost:${port} portunda uygulama hazir.`)
