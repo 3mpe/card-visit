@@ -8,6 +8,17 @@ angular
 				controller: 'LayoutController',
 				controllerAs: 'vm'
 			})
+			.state('app.login', {
+				url: '/login',
+				views: {
+					wrapper: {
+						templateUrl: 'pages/login/login.html',
+						controller: 'loginController',
+						controllerAs: 'vm'
+					}
+				}
+			})
+
 			.state('app.list', {
 				url: '/',
 				views: {

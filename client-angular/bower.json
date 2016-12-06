@@ -20,7 +20,8 @@
     "angular": "^1.5.9",
     "angular-ui-router": "^0.3.2",
     "angular-sweetalert": "angular-h-sweetalert#^1.4.7",
-    "angular-toasty": "^1.0.5"
+    "angular-toasty": "^1.0.5",
+    "angular-local-storage": "^0.5.2"
   },
   "overrides": {
     "bootstrap": {

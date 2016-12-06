@@ -1,6 +1,6 @@
 angular
 	.module('GaarajCardVisit')
-	.controller('listController', function (Card, Utils, $state, Notify) {
+	.controller('listController', function (Card, Auth, Utils, $state, Notify) {
 		var vm = this;
 
 		function getcardList(argument) {

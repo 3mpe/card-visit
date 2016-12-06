@@ -101,7 +101,7 @@ const modelInfo = {
 		createdAt: 'createdAt',
 		updatedAt: 'updatedAt'
 	}
-}
+};
 
 
 const CardsSchema = {
@@ -137,11 +137,31 @@ const CardsSchema = {
 		validate: positionValidator
 	},
 	status: {
-		type:String		
+		type: String
 	}
 };
 
+const UserSchema = {
+	email: {
+		type: String,
+		required: true,
+		unique: true
+	},
+	pass: {
+		type: String,
+		required: true,
+	},	
+	status: {
+		type: String
+	}
+};
+
+
+
+
+
 module.exports = {
-	Cards: mongoose.model('Cards', new Schema(CardsSchema, modelInfo))
+	Cards: mongoose.model('Cards', new Schema(CardsSchema, modelInfo)),
+	User: mongoose.model('User', new Schema(UserSchema, modelInfo))
 };
 

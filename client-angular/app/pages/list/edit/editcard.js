@@ -5,7 +5,6 @@ angular.module('GaarajCardVisit')
 		var params = $state.params;
 		var State = $state;
 
-
 		function getDetail() {
 			Card.show(params.card_id).success(function (response) {
 				vm.cardForm = response[0];

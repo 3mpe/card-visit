@@ -1,5 +1,5 @@
 angular
-	.module('GaarajCardVisit', ['ui.router', 'angular-toasty', 'hSweetAlert'])
+	.module('GaarajCardVisit', ['ui.router', 'angular-toasty', 'hSweetAlert', 'LocalStorageModule'])
 	.value('Config', {
 		sessionkey: 'gasess',
 		userkey: 'gauser',
