@@ -7,14 +7,32 @@
  * Copyright 2016 | Released under the ISC license.
 */
 angular
-	.module('GaarajCardVisit', ['ui.router', 'angular-toasty', 'oitozero.ngSweetAlert'])
+	.module('GaarajCardVisit', ['ui.router', 'angular-toasty', 'hSweetAlert'])
 	.value('Config', {
 		sessionkey: 'gasess',
 		userkey: 'gauser',
 		api: {
 			url: 'http://localhost:8080',
 		}
-	});
+	})
+
+/**
+ * DİRECTİVES
+ */
+.directive('loadingIndicator', function (Static) {
+	return {
+		scope: { indicator: '=' },
+		restrict: 'E',
+		template: '<span class="loading-indicator" data-ng-show="isShow"><i class="icon"></i><ng-transclude class="message"></ng-transclude></span>',
+		transclude: true,
+		replace: true,
+		link: function (scope, element, attrs) {
+			scope.$watch('indicator', function (newVal) {
+				if (angular.isDefined(newVal)) { scope.isShow = newVal; }
+			});
+		}
+	};
+});
 
 
 angular
@@ -60,6 +78,11 @@ angular
 		$urlRouterProvider.otherwise('/');
 		$locationProvider.hashPrefix('!');
 	});
+
+
+angular.module('GaarajCardVisit').controller('LayoutController', function () {
+
+});
 
 
 angular
@@ -149,25 +172,55 @@ angular.module('GaarajCardVisit').service('Card', function (Api) {
 
 angular
   .module('GaarajCardVisit')
-  .service('Notify', function(SweetAlert, toasty) {
+  .service('Notify', function (sweet) {
     return {
-      success: function($message, $title) {
+      success: function ($message, $title, $timer) {
         var title = $title ? $title : 'Tebrikler!';
-        toasty.success({ title: title, msg: $message, html: true });
+        var timer = $timer ? $timer : 3000;
+        sweet.show({
+          type: "success",
+          title: title,
+          text: $message,
+          timer: timer,
+          showConfirmButton: false
+        });
       },
-      error: function($message, $title) {
+      error: function ($message, $title, $timer) {
         var title = $title ? $title : 'Üzgünüz!';
-        toasty.error({ title: title, msg: $message, html: true });
+        var timer = $timer ? $timer : 3000;
+
+        sweet.show({
+          type: "error",
+          title: title,
+          text: $message,
+          timer: timer,
+          showConfirmButton: false
+        });
       },
-      info: function($message, $title) {
+      info: function ($message, $title, $timer) {
         var title = $title ? $title : 'Bilgi!';
-        toasty.info({ title: title, msg: $message, html: true });
+        var timer = $timer ? $timer : 3000;
+
+        sweet.show({
+          type: "info",
+          title: title,
+          text: $message,
+          timer: timer,
+          showConfirmButton: false
+        });
       },
-      warning: function($message, $title) {
+      warning: function ($message, $title, $timer) {
         var title = $title ? $title : 'Dikkat!';
-        toasty.warning({ title: title, msg: $message, html: true });
+        var timer = $timer ? $timer : 3000;
+        sweet.show({
+          type: "warning",
+          title: title,
+          text: $message,
+          timer: timer,
+          showConfirmButton: false
+        });
       },
-      confirm: function($success, $error, $params) {
+      confirm: function ($success, $error, $params) {
         var params = {
           title: "Emin misiniz?",
           text: "Bu kayıt silinecek!",
@@ -176,24 +229,39 @@ angular
           confirmButtonColor: "#DD6B55",
           confirmButtonText: "Evet, Devam et!",
           cancelButtonText: 'Hayır, Devam etme!',
-          closeOnConfirm: true,
-          closeOnCancel: true
+          closeOnConfirm: false,
+          closeOnCancel: false
         };
         params = angular.extend(params, $params);
-        SweetAlert.swal(params, function(isConfirm) {
+        sweet.show(params, function (isConfirm) {
           if (isConfirm) {
             if (typeof $success == 'function') {
               $success(isConfirm);
+              sweet.show({
+                type: "success",
+                title: 'Silindi!',
+                text: 'Seçmiş olduğunuz kartvizit Silindi.',
+                timer: 2000,
+                showConfirmButton: false
+              });
             }
           } else {
             if (typeof $error == 'function') {
               $error(isConfirm);
+              sweet.show({
+                type: "error",
+                title: 'İptal!',
+                text: 'İşlem iptal edildi.',
+                timer: 2000,
+                showConfirmButton: false
+              });
             }
           }
         });
       }
     };
   });
+
 
 angular.module('GaarajCardVisit').service('Utils', function () {
 	return {
@@ -222,19 +290,16 @@ angular.module('GaarajCardVisit').service('Utils', function () {
 });
 
 
-angular.module('GaarajCardVisit').controller('LayoutController', function () {
-
-});
-
-
 angular
 	.module('GaarajCardVisit')
-	.controller('listController', function (Card, Utils, $state, Notify ) {
+	.controller('listController', function (Card, Utils, $state, Notify) {
 		var vm = this;
 
 		function getcardList(argument) {
 			Card.index().success(function (response) {
-				vm.card = response.data;
+				vm.card = response.data.filter(function (item) {
+					return item.status === "Active";
+				});
 			}).error(function () {
 				Notify.success('Kart listesi alınamadı');
 			});
@@ -247,19 +312,24 @@ angular
 		vm.addCard = addCard;
 
 		function cardDelete(card_id) {
-			Card.delete(card_id)
-				.success(function (response) {
-					Notify.success(response.message);
-					getcardList();
-				})
-				.error(function (error) {
-					Notify.success(error.message);
-				});
+			Notify.confirm(function (confİtem) {
+				if (confİtem) {
+					Card.delete(card_id)
+						.success(function (response) {
+							Notify.success(response.message);
+							getcardList();
+						})
+						.error(function (error) {
+							Notify.success(error.message);
+						});
+				}
+			}, function (error) {});
+
 		}
 		vm.cardDelete = cardDelete;
 
 		function cardEdit(card_id) {
-			$state.go('app.editCard', { card_id : card_id });
+			$state.go('app.editCard', { card_id: card_id });
 		}
 		vm.cardEdit = cardEdit;
 	});
@@ -268,13 +338,23 @@ angular
 angular.module('GaarajCardVisit')
 	.controller('newCardController', function (Card, Notify, $state) {
 		var vm = this;
+
 		function savecard(item) {
-			Card.store(item).success(function (response) {
-				Notify.success(response.message);
-				$state.go('app.list');
-			});
+			if (item) {
+				Card.store(item).success(function (response) {
+					Notify.success(response.message);
+					$state.go('app.list');
+				});
+			} else {
+				Notify.error("Lütfen bütün alanları doldurun.");
+			}
 		}
 		vm.savecard = savecard;
+
+		function cancel() {
+			$state.go('app.list');
+		}
+		vm.cancel = cancel;
 
 	});
 
@@ -306,5 +386,10 @@ angular.module('GaarajCardVisit')
 				});
 		}
 		vm.updateCard = updateCard;
+
+		function cancel() {
+			$state.go('app.list');
+		}
+		vm.cancel = cancel;
 	});
 

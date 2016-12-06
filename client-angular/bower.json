@@ -19,12 +19,14 @@
     "bootstrap": "^3.3.7",
     "angular": "^1.5.9",
     "angular-ui-router": "^0.3.2",
-    "angular-toasty": "^1.0.5",
-    "ngSweetAlert": "angular-sweetalert#^1.1.2"
+    "angular-sweetalert": "angular-h-sweetalert#^1.4.7",
+    "angular-toasty": "^1.0.5"
   },
   "overrides": {
     "bootstrap": {
-      "main": ["dist/css/bootstrap.css"]
+      "main": [
+        "dist/css/bootstrap.css"
+      ]
     },
     "font-awesome": {
       "main": [
@@ -39,4 +41,3 @@
     }
   }
 }
-

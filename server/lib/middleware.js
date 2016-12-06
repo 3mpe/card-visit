@@ -14,7 +14,7 @@ middleware.load = function (app) {
 		//response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
 		response.header("Access-Control-Allow-Origin", "http://localhost:3000");
-		response.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
+		response.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
 		response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
 
 		next();

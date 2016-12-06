@@ -25,5 +25,10 @@ angular.module('GaarajCardVisit')
 				});
 		}
 		vm.updateCard = updateCard;
+
+		function cancel() {
+			$state.go('app.list');
+		}
+		vm.cancel = cancel;
 	});
 

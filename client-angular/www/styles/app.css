@@ -51,10 +51,8 @@ body {
       background-color: #FDFDFD; }
     .card-list .item .processor {
       position: absolute;
-      right: 20px;
-      top: 20px; }
-      .card-list .item .processor div {
-        padding: 5px; }
+      right: 5px;
+      top: 25px; }
   .card-list .item:hover {
     border-color: #4ab3e2;
     background-color: #FDFDFD; }

@@ -24,10 +24,10 @@ controller.index = function (request, response) {
 				company_position: item.company_position,
 				email: item.email,
 				createdAt: item.createdAt,
-				updatedAt: item.updatedAt
+				updatedAt: item.updatedAt,
+				status: item.status
 			});
 		});
-
 
 		return response.status(200).json({ data: data });
 	});
@@ -35,19 +35,20 @@ controller.index = function (request, response) {
 };
 
 controller.store = function (request, response, next) {
-	
+
 	let data = {
 		name: request.body.name.trim(),
 		surname: request.body.surname.trim(),
 		email: request.body.email.trim(),
 		phone: request.body.phone.trim(),
 		company: request.body.company.trim(),
-		company_position: request.body.company_position.trim()
+		company_position: request.body.company_position.trim(),
+		status: 'Active'
 	};
 
 	Cards.find({ email: request.body.email, phone: request.body.phone }, function (err, card) {
 		if (card.length > 0) {
-			return response.json({ message: 'Bu kartvizit zaten kayıtlı!', data: card });
+			return response.status(200).json({ message: 'Bu kartvizit zaten kayıtlı!', data: card });
 		}
 		var newcard = new Cards(data);
 		var error = newcard.validateSync();
@@ -94,11 +95,28 @@ controller.update = function (request, response) {
 };
 
 controller.delete = function (request, response) {
-	Cards.find({ _id: request.params.card_id }).remove(function (err, removed) {
-		if (err) return response.json(err);
+	var card_id = request.params.card_id;
+	if (card_id) {
+		Cards.find({ _id: card_id }, function (err, cards) {
+			if (err) {
+				return response.json(err.errors);
+			}
+			let ddata = {
+				name: cards.name,
+				email: cards.email,
+				phone: cards.phone,
+				company: cards.company,
+				company_position: cards.company_position,
+				status: 'Deleted'
+			};
+			Cards.findByIdAndUpdate({ _id: card_id }, ddata, function (err, tank) {
+				if (err) return response.status(500).json(err);
+				return response.json({ message: 'kartvizit silindi!', data: tank });
+			});
 
-		return response.json({ message: 'kartvizit silindi!' });
-	});
+			return response.json({ message: 'kartvizit silindi!' });
+		});
+	}
 };
 
 module.exports = controller;

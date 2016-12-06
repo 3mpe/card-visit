@@ -135,6 +135,9 @@ const CardsSchema = {
 		type: String,
 		required: true,
 		validate: positionValidator
+	},
+	status: {
+		type:String		
 	}
 };
 
