@@ -1,0 +1,27 @@
+<div class="page-heading">
+  <h2 class="page-title"><i class="fa fa-id-card"></i> Kart Vizit Listesi</h2>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="search">
+    <i class="fa fa-search"></i>
+    <input type="text" class="form-control" placeholder="Kartvizit ara" ng-model="vm.query">
+  </div>
+  <div style="padding-left: 20px" ng-click="vm.addCard()"> <i class="fa fa-plus"></i>Yeni Kartvizit </div>
+</div>
+<div class="card-list">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" data-ng-repeat=" item in ( vm.card | filter: vm.query)">
+    <div class="item " ng-class=" vm.isSelect === item.id?'item-select':'' " ng-click="vm.isSelect = item.id;">
+      <img class="item-image" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSQ0OVnO8F1ApFM9fHi6SgKOUN_t8DmM1hQhdgwJvrwClC8_8yj0MjYYA" alt="profile image" />
+      <div class="item-explanation">
+        <div class="item-explanation-name"> {{item.name }} {{item.surname}}</div>
+        <div class="item-explanation-phone"> <i class=" fa fa-phone "></i> {{item.phone}} </div>
+        <div class="item-explanation-email"> <i class="fa fa-envelope-o"></i> {{item.email}}</div>
+        <div class="item-explanation-companyName"> {{item.company}} - {{item.company_position}}</div>
+      </div>
+      <div class="processor">
+        <div ng-click="vm.cardDelete(item.id)"> <i class="fa fa-delete"></i> Sil</div>
+        <div ng-click="vm.cardEdit(item.id)"> <i class="fa fa-edit"></i> Düzenle</div>
+      </div>
+    </div>
+  </div>
+</div>

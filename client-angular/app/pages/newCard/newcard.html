@@ -1,0 +1,46 @@
+<div class="panel panel-default"></div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Yeni Kart Ekleme</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 7px;">
+        <label for="input-id" class="col-xs-2 col-sm-2 col-md-2 col-lg-2"> Adı</label>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+          <input type="text" class="form-control" ng-model="vm.cardForm.name">
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 7px;">
+        <label for="input-id" class="col-xs-2 col-sm-2 col-md-2 col-lg-2"> Soyadı </label>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+          <input type="text" class="form-control" ng-model="vm.cardForm.surname">
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 7px;">
+        <label for="input-id" class="col-xs-2 col-sm-2 col-md-2 col-lg-2"> Telefon Numarası </label>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+          <input type="text" class="form-control" ng-model="vm.cardForm.phone">
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 7px;">
+        <label for="input-id" class="col-xs-2 col-sm-2 col-md-2 col-lg-2"> Eposta Adresi </label>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+          <input type="text" class="form-control" ng-model=" vm.cardForm.email ">
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 7px;">
+        <label for="input-id" class="col-xs-2 col-sm-2 col-md-2 col-lg-2"> Firmada Pozisyonu </label>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+          <input type="text" class="form-control" ng-model="vm.cardForm.company_position">
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 7px;">
+        <div class="pull-right">
+          <button type="button" type="button" class="btn btn-danger"  ng-click="vm.cancel()">Vazgec</button>
+          <button type="button pull-left" type="button" class="btn btn-primary"  ng-click="vm.savecard(vm.cardForm)">Kaydet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
