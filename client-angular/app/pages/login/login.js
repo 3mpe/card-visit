@@ -12,7 +12,7 @@ angular.module('GaarajCardVisit')
 					Storage.name('user').set(response.user.islogin);
 					$state.go('app.list');
 				})
-				.error(function () {
+				.error(function (error) {
 					Notify.error(error.message);
 				});
 		}
